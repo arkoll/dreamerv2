@@ -25,6 +25,7 @@ import ruamel.yaml as yaml
 
 import agent
 import common
+import wandb
 
 
 def main():
@@ -42,6 +43,8 @@ def main():
   config.save(logdir / 'config.yaml')
   print(config, '\n')
   print('Logdir', logdir)
+  wandb.tensorboard.patch(root_logdir=config.logdir)
+  run = wandb.init(config=config)
 
   import tensorflow as tf
   tf.config.experimental_run_functions_eagerly(not config.jit)
@@ -185,6 +188,7 @@ def main():
     print('Start training.')
     train_driver(train_policy, steps=config.eval_every)
     agnt.save(logdir / 'variables.pkl')
+  run.finish()
   for env in train_envs + eval_envs:
     try:
       env.close()

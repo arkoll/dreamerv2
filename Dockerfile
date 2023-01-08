@@ -14,7 +14,8 @@ RUN pip install --no-cache-dir \
   gym \
   dm_control \
   ruamel.yaml \
-  tensorflow_probability
+  tensorflow_probability \
+  wandb
 
 # DreamerV2.
 ENV TF_XLA_FLAGS --tf_xla_auto_jit=2
