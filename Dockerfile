@@ -1,4 +1,4 @@
-FROM tensorflow/tensorflow:2.11.0-gpu
+FROM tensorflow/tensorflow:2.13.0-gpu
 
 # System packages.
 RUN apt-get update && apt-get install -y \
@@ -19,5 +19,4 @@ RUN pip install --no-cache-dir \
 
 # DreamerV2.
 ENV TF_XLA_FLAGS --tf_xla_auto_jit=2
-COPY . /app
-WORKDIR /app
+WORKDIR /project

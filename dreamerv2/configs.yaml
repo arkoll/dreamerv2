@@ -1,6 +1,7 @@
 defaults:
 
   # Train Script
+  log_wandb: True
   logdir: /dev/null
   seed: 0
   task: dmc_walker_walk
